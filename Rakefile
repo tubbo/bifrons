@@ -1,11 +1,11 @@
 ROOT_PATH = File.expand_path(File.join(File.dirname(__FILE__)))
-$: << File.join(ROOT_PATH, 'janus', 'ruby')
+$: << File.join(ROOT_PATH, 'ruby')
 
 require 'janus'
 require 'fileutils'
 include Janus
 
-desc "link ViM configuration files."
+desc "Link Vim configuration."
 task :link_vim_conf_files do
   %w[ vimrc gvimrc ].each do |file|
     dest = expand("~/.#{file}")
@@ -16,16 +16,18 @@ task :link_vim_conf_files do
 end
 
 namespace :dev do
-  desc "Update submodules"
+  desc "Pull in changes from each submodule"
   task :update_submodules do
     sh "git submodule foreach git pull origin master"
+    sh "git submodule foreach git add ."
   end
 
-  # Taken from RefineryCMD
+  # Taken from RefineryCMS
   # https://github.com/resolve/refinerycms/blob/master/core/lib/tasks/refinery.rake
-  desc 'Removes trailing whitespace across the entire application.'
+  desc "Removes trailing whitespace across the entire application."
   task :whitespace do
     require 'rbconfig'
+
     if RbConfig::CONFIG['host_os'] =~ /linux/
       sh %{find . -name '*.*rb' -o -name '*.*vim' -exec sed -i 's/\t/ /g' {} \\; -exec sed -i 's/ *$//g' {} \\; }
     elsif RbConfig::CONFIG['host_os'] =~ /darwin/
@@ -43,35 +45,36 @@ task :folders do
   end
 end
 
+desc "Update to the latest HEAD from git"
 task :update do
-  puts "Cleaning the janus folder"
-  `git clean -xdf -- janus &> /dev/null`
-  `git ls-files --exclude-standard --others -- janus`.split("\n").each do |untracked|
-    FileUtils.rm_rf File.expand_path(untracked.chomp, File.dirname(__FILE__))
+  Rake::Task[:clean].invoke
+
+  ['origin', `git config github.user`.strip].each do |remote|
+    puts "Pulling latest changes"
+    `git pull #{remote} master > /dev/null`
+    Rake::Task[:clean].invoke
   end
 
-  puts "Pulling latest changes"
-  `git pull > /dev/null`
-
-  puts "Cleaning the janus folder"
-  `git clean -xdf -- janus &> /dev/null`
-  `git ls-files --exclude-standard --others -- janus`.split("\n").each do |untracked|
-    FileUtils.rm_rf File.expand_path(untracked.chomp, File.dirname(__FILE__))
-  end
-
-  puts "Synchronising submodules urls"
+  puts "Synchronising submodule urls"
   `git submodule sync > /dev/null`
 
   puts "Updating the submodules"
   `git submodule update --init > /dev/null`
 end
 
-task :install => [:folders, :link_vim_conf_files] do
-  # Dummy task, real work is done with the hooks.
-end
+desc "Get the Vim folder ready for Janus."
+task :configure => [:folders, :link_vim_conf_files]
 
-desc "Install or Update Janus."
-task :default do
-  sh "rake update"
-  sh "rake install"
+desc "Update Janus."
+task :default => [:update]
+
+namespace :install do
+  %w(color lang tool).each do |type|
+    desc "Installs a plugin into #{type.pluralize}/"
+    task :"#{type}" do
+      repo    = ARGV[0] # must end in .git
+      plugin  = ARGV[1] || repo.gsub(/htt(p|ps)\:\/\/(.*)\/|git\:\/\/(.*)\/|.git/, '')
+      sh "git submodule add #{repo} #{type}/#{plugin}"
+    end
+  end
 end
