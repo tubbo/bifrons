@@ -45,9 +45,6 @@
 [submodule "langs/markdown"]
 	path = langs/markdown
 	url = https://github.com/tpope/vim-markdown.git
-[submodule "langs/puppet"]
-	path = langs/puppet
-	url = https://github.com/ajf/puppet-vim.git
 [submodule "langs/scala"]
 	path = langs/scala
   url = https://github.com/rosstimson/scala-vim-support.git

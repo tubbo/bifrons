@@ -10,7 +10,7 @@ task :link_vim_conf_files do
   %w[ vimrc gvimrc ].each do |file|
     dest = expand("~/.#{file}")
     unless File.exist?(dest)
-      ln_s(expand("../janus/vim/#{file}", __FILE__), dest)
+      ln_s(expand("../#{file}", __FILE__), dest)
     end
   end
 end
