@@ -6,4 +6,4 @@ require 'fileutils'
 
 include Janus
 
-Dir["#{ROOT_PATH}/lib/tasks"].each { |rakefile| load rakefile }
+Dir["#{ROOT_PATH}/lib/tasks/*.rake"].each { |rakefile| load rakefile }
