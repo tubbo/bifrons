@@ -10,8 +10,6 @@ let g:janus_custom_path = expand("~/.janus")
 " Load Janus core
 exe 'source ' . g:janus_vim_path . '/core/before/plugin/janus.vim'
 
-" Use Git Grep for project search
-set projectsearch="git"
 
 " Load Pathogen groups. Processed in reverse order.
 call janus#add_group("tools")
