@@ -1,7 +1,9 @@
-# Janus: Vim Distribution
+# Bifrons, a sensible Vim distribution
 
 This is a distribution of plug-ins and mappings for Vim, Gvim and
-MacVim.
+MacVim, loosely based off of the wonderful
+[Janus](http://github.com/carlhuda/janus) distribution by Carl and
+Yehuda.
 
 It is designed to provide minimal working environment using the most
 popular plug-ins and the most common mappings.
@@ -9,28 +11,7 @@ popular plug-ins and the most common mappings.
 The distribution is completely customisable using a `~/.vimrc.before`
 and `~/.vimrc.after` Vim RC files.
 
-# UPGRADING FROM JANUARY 1st 2012 THROUGH JANUARY 10th
-
-Please run `rake` twice before running macvim; make sure `command-t` is
-gone.
-
-# UPGRADING FROM BEFORE JANUARY 1st 2012
-
-If you were using Janus before January 2012, note that Janus has gone
-through a rewrite to make it more stable and customizable. Most notably,
-you can now disable plugins using `janus#disable_plugin` and customize
-Janus using `~/.vimrc.before` and `~/.vimrc.after`. See the rest of this
-`README` and the [Customization wiki page](https://github.com/carlhuda/janus/wiki/Customization).
-
-To upgrade to the latest version:
-
-1. remove `~/.vim`, `~/.vimrc` and `~/.gvimrc`.
-2. move customizations from `~/.vimrc.local` to `~/.vimrc.before` and
-   `~/.vimrc.after`.
-3. Do the same with `/.gvimrc.local`.
-4. Run the installer: `curl -Lo- https://bit.ly/janus-bootstrap | bash`
-
-## Updating to the latest version (from any time after January 10th, 2012)
+## Upgrading
 
 To update to the latest version of the distribution, just run `rake`
 inside your `~/.vim` directory.
@@ -49,7 +30,14 @@ discussion and announcements.
 
 The distribution is designed to work with Vim >= 7.3.
 
-The distribution also requires `ack`, `ctags`, `git`, `ruby` and `rake`.
+The distribution also requires `ack`, `ctags`, `git`, `ruby`, `bundler` and `rake`.
+If you already have Rake, you can run the following command to install
+all related external dependencies and the bundle:
+
+```bash
+$ rake install:dependencies
+```
+
 For the most comfortable experience, use the GUI version of Vim. Linux
 users should install `gvim`, OSX users should install
 [MacVim](http://code.google.com/p/macvim/). The recommended way of
