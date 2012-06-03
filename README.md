@@ -11,22 +11,19 @@ popular plug-ins and the most common mappings.
 The distribution is completely customisable using a `~/.vimrc.before`
 and `~/.vimrc.after` Vim RC files.
 
-## Upgrading
+## Installation
 
-To update to the latest version of the distribution, just run `rake`
-inside your `~/.vim` directory.
+The safest way is to clone to an arbitrary location, then bootstrap to
+your **~/.vim** directory. This makes copies of your old configuration,
+in case you want to return to it later.
 
-NOTE: If you ever have an error updating Janus relating to a
-missing commit in a submodule, please try running `rake` again before
-submitting an issue.
+```bash
+$ git clone git://github.com/tubbo/bifrons.git ~/Code/bifrons
+$ cd ~/Code/bifrons
+$ rake
+```
 
-## Mailing list
-
-The mailing list is hosted at [Google
-Groups](http://groups.google.com/group/janus-vimius), please join it for
-discussion and announcements.
-
-## Pre-requisites
+### Pre-requisites
 
 The distribution is designed to work with Vim >= 7.3.
 
@@ -38,149 +35,24 @@ all related external dependencies and the bundle:
 $ rake install:dependencies
 ```
 
-For the most comfortable experience, use the GUI version of Vim. Linux
-users should install `gvim`, OSX users should install
-[MacVim](http://code.google.com/p/macvim/). The recommended way of
-installing MacVim is using
-[Homebrew](http://mxcl.github.com/homebrew/), but before installing
-MacVim you need to use system-wide Python (If you are using python that
-is):
 
-* If you're using **pythonbrew**: do `pythonbrew off`
+## Upgrading
 
-```bash
-$ brew install macvim
-```
+To update to the latest version of the distribution, just run `rake`
+inside your `~/.vim` directory.
 
-If you don't use Homebrew, you can still download MacVim
-[here](https://github.com/b4winckler/macvim/downloads).
+## Personalization
 
-Take a look at the [Pre-requisites wiki
-page](https://github.com/carlhuda/janus/wiki/Pre-requisites) for more
-information.
-
-
-## Installation
-
-To install Janus, please use our [automatic
-installer](https://github.com/carlhuda/janus/blob/master/bootstrap.sh)
-, which backs up any Vim files found in your home folder and installs
-Janus.
-
-```bash
-$ curl -Lo- https://bit.ly/janus-bootstrap | bash
-```
-
-## Customization
-
-You can use `~/.gvimrc.before` and `~/.vimrc.before` for settings Janus itself uses,
-such as the __leader__ setting. You may also use `~/.gvimrc.after` and
-`~/.vimrc.after` for any additional settings; it is also a good place for
-overriding Janus settings, as both files will be loaded at the end of
-Janus.
-
-For example, to override the default color schemes:
-
-```bash
-$ echo 'color desert'  >> ~/.vimrc.after
-$ echo 'color molokai' >> ~/.gvimrc.after
-```
-
-If you want to do additional customization or add more Vim plugins,
-create a `~/.janus` directory and add your plugins there, either with a
-`git clone` or by adding submodules to your own git repository there.
-This directory is treated like a normal pathogen directory. For example:
-
-```bash
-$ cd ~/.janus
-$ git clone https://github.com/vim-scripts/Rename2.git rename2
-```
-
-Or, if you have a git repository in `~/.janus`, you can use a submodule:
-
-```bash
-$ cd ~/.janus
-$ git submodule add https://github.com/vim-scripts/Rename2.git rename2
-```
-
-If you would like to disable an included plug-in, you can do that with
-the `janus#disable_plugin()` function from inside your
-`~/.vimrc.before`. This function takes a plug-in name as an argument
-without the group. For example, if you would like to disable the
-NERDCommenter plug-in, you can do that with the command:
-
-```bash
-$ echo "call janus#disable_plugin('nerdcommenter')" >> ~/.vimrc.before
-```
-
-**WARNING**: We've noticed over and over, that people fork Janus just to
-customize it. This is bad practice for several reasons and you should
-not do that, and here's why:
-
-- Janus is fully customisable and there's no need to change the core for
-  using a different plugin fork or using a different mapping.
-- Forking means maintenance; maintenance means burden. Do not burden
-  yourself with maintaining a fork; that's what the `~/.janus` folder
-  is for.
-
-If you find yourself needing a customisation that is not possible with
-the current setup, then please open an issue or consider submitting a
-pull request to make it possible to continue using/improving the official repo.
-
-**WARNING**: Any **uncommited** files inside the **janus** folder will be
-removed the next time you run `rake` so make sure to either put them in
-the custom folder (`~/.janus`), or commit them. We clean the janus
-folder in case we replace a manually installed plugin (using rake tasks)
-with a submodule.
-
-For more information on how to customize Janus, you might want to take
-a look at the [Customization wiki
-page](https://github.com/carlhuda/janus/wiki/Customization).
-
-# Intro to VIM
-
-Here're some tips in case you've never used VIM before:
-
-## Tutorials
-
-* Type `vimtutor` into a shell to go through a brief interactive
-  tutorial inside VIM.
-* Read the slides at [VIM: Walking Without Crutches](http://walking-without-crutches.heroku.com/#1).
-* Watch the screencasts at [vimcasts.org](http://vimcasts.org/)
-* Watch Derek Wyatt's energetic tutorial videos at [his site](http://www.derekwyatt.org/vim/vim-tutorial-videos/)
-* Read wycats' perspective on learning Vim at
-  [Everyone who tried to convince me to use vim was wrong](http://yehudakatz.com/2010/07/29/everyone-who-tried-to-convince-me-to-use-vim-was-wrong/)
-* Read this and other answers to a question about vim at StackOverflow:
-  [Your problem with Vim is that you don't grok vi](http://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim/1220118#1220118)
-
-## Modes
-
-* VIM has two modes:
-  * insert mode- stuff you type is added to the buffer
-  * normal mode- keys you hit are interpreted as commands
-* To enter insert mode, hit `i`
-* To exit insert mode, hit `<ESC>`
-
-## Useful commands
-
-* Use `:q` to exit vim
-* Certain commands are prefixed with a `<Leader>` key, which maps to `\`
-  by default. You can, for example, use `let mapleader = ","` to change this to a comma. If you want this
-  to be in effect for uses of `<Leader>` in the .vimrc file, make sure to define
-  this in `~/.vimrc.before`
-* Keyboard [cheat sheet](http://walking-without-crutches.heroku.com/image/images/vi-vim-cheat-sheet.png).
-
-# Features
-
-This Vim distribution includes a number of packages built by others.
+Want to personalize it? Great! Fork the project and pull request in your awesome changes if you have them.
 
 ## Base Customizations
 
-Janus ships with a number of basic customizations for vim:
+Bifrons ships with a number of basic customizations for Vim. They are
+practicall the same as Janus' customizations:
 
 * Line numbers
 * Ruler (line and column numbers)
-* No wrap (turn off per-buffer via :set wrap)
+* Word wrap to 100 columns
 * Soft 2-space tabs, and default hard tabs to 2 spaces
 * Show trailing whitespace as `.`
 * Make searching highlighted, incremental, and case insensitive unless a
@@ -227,28 +99,36 @@ exist.)
 * `<C-W>!` invokes kwbd plugin; it closes all open buffers in the open
   windows but keeps the windows open
 
-## [Ack.vim](http://github.com/mileszs/ack.vim)
+### [Ack.vim](http://github.com/mileszs/ack.vim)
 
-Ack.vim uses ack to search inside the current directory for a pattern.
+Although I don't personally use it, Ack allows you to search inside the
+current directory for a pattern with the program `ack`. It's here for
+historic purposes, and in case I can't use :Ggrep for some eason...
+
 You can learn more about it with :help Ack.
 
 **Customizations**: Janus rebinds command-shift-f (`<D-F>`) to bring up
-`:Ack `.
+`:Ack `, but I don't do this by default. You can re-enable it easily in
+~/.vimrc by simply doing `set projectsearch="ack"`.
 
-## [CtrlP](https://github.com/kien/ctrlp.vim)
+### [Command-T](https://github.com/wincent/Command-T)
 
-Fuzzy file, buffer, mru and tag finder. Replaces [Command-T](https://github.com/wincent/Command-T)
+I liked Command-T, because you could automatically filter it. So here it
+is again.
 
-**Customizations**: For users of Command-T Janus maps CtrlP to command-t (`<D-t>`)
+**Customizations**: Here's why I'm using Command-T...`<C-g>` plus a letter 
+maps to a number of different filtered fuzzy find searches. In Rails projects, 
+for example, `<C-g>m` will only bring up models in `app/models`. It's also
+mapped with `<C-t>` and `<D-t>` in MacVim.
 
-## [NERDCommenter](http://github.com/ddollar/nerdcommenter)
+### [NERDCommenter](http://github.com/ddollar/nerdcommenter)
 
 NERDCommenter allows you to wrangle your code comments, regardless of
 filetype. View `:help NERDCommenter` for all the details.
 
 **Customizations**: Janus binds command-/ (`<D-/>`) to toggle comments.
 
-## [NERDTree](https://github.com/scrooloose/nerdtree)
+### [NERDTree](https://github.com/scrooloose/nerdtree)
 
 NERDTree is a file explorer plugin that provides "project drawer"
 functionality to your vim projects.  You can learn more about it with
@@ -264,25 +144,25 @@ NERDTree:
 * In general, assume that there is a single NERDTree buffer on the left
   and one or more editing buffers on the right
 
-## [SuperTab](http://github.com/ervandew/supertab)
+### [SuperTab](http://github.com/ervandew/supertab)
 
 In insert mode, start typing something and hit `<TAB>` to tab-complete
 based on the current context.
 
-## [Syntastic](https://github.com/scrooloose/syntastic/)
+### [Syntastic](https://github.com/scrooloose/syntastic/)
 
 Syntastic is a syntax checking plugin that runs buffers through external syntax 
 checkers as they are saved and opened. If syntax errors are detected, the user 
 is notified and is happy because they didn't have to compile their code or 
 execute their script to find them.
 
-## [Tagbar](https://github.com/majutsushi/tagbar)
+### [Tagbar](https://github.com/majutsushi/tagbar)
 
 Tagbar is a vim plugin for browsing the tags of source code files.
 
 **Customizations**: Janus binds `<Leader>rt` to toggle Tagbar.
 
-## [EasyMotion](https://github.com/Lokaltog/vim-easymotion)
+### [EasyMotion](https://github.com/Lokaltog/vim-easymotion)
 
 EasyMotion provides a much simpler way to use some motions in vim. It
 takes the <number> out of <number>w or <number>f{char} by highlighting
@@ -298,7 +178,7 @@ EasyMotion is triggered by one of the provided mappings.
 check EasyMotion's [home
 page](https://github.com/Lokaltog/vim-easymotion) for more information.
 
-## [NrrwRgn](https://github.com/chrisbra/NrrwRgn)
+### [NrrwRgn](https://github.com/chrisbra/NrrwRgn)
 
 Narrowing means focussing on a region and making the rest inaccessible.
 You simply select the region, call :NarrowRegion and the selected part
@@ -309,7 +189,7 @@ that part. When you are finished, simply write that buffer (e.g. by
 |:w|) and your modifications will be put in the original buffer making
 it accessible again.
 
-## Git Support ([Fugitive](http://github.com/tpope/vim-fugitive))
+### Git Support ([Fugitive](http://github.com/tpope/vim-fugitive))
 
 Fugitive adds pervasive git support to git directories in vim. For more
 information, use `:help fugitive`
@@ -330,14 +210,14 @@ file
 * `<leader>gc` maps to `:Gcommit<CR>`
 * `<leader>gp` maps to `:Git push<CR>`
 
-## [ZoomWin](http://github.com/vim-scripts/ZoomWin)
+### [ZoomWin](http://github.com/vim-scripts/ZoomWin)
 
 When working with split windows, ZoomWin lets you zoom into a window and
 out again using `Ctrl-W o`
 
 **Customizations**: Janus binds `<leader>zw` to `:ZoomWin`
 
-## [BufferGator](https://github.com/jeetsukumaran/vim-buffergator)
+### [BufferGator](https://github.com/jeetsukumaran/vim-buffergator)
 
 Buffergator is a plugin for listing, navigating between, and selecting
 buffers to edit. Upon invocation (using the command, `:BuffergatorOpen`
@@ -355,7 +235,7 @@ can "walk" up and down the list of buffers shown in the catalog by using
 next/previous buffer in succession, respectively, opening it for preview
 without leaving the buffer catalog viewer.
 
-## [Vroom](https://github.com/skalnik/vim-vroom)
+### [Vroom](https://github.com/skalnik/vim-vroom)
 
 VRoom is a plugin inspired by [Gary Bernhardt's vim
 config](https://github.com/garybernhardt/dotfiles/blob/69330074b7a15c67efa4594a71fa91592f1ce4f9/.vimrc#L286-342) 
@@ -373,7 +253,7 @@ window, one software to do it all, which is a huge speedup over using
 
 ## Additional Syntaxes
 
-Janus ships with a few additional syntaxes:
+Biffon ships with a few additional syntaxes:
 
 * Markdown (bound to \*.markdown, \*.md, and \*.mk)
 * Mustache (bound to \*.mustache)
@@ -388,13 +268,7 @@ Janus ships with a few additional syntaxes:
   `$ echo "export EDITOR='vim -f'" >> ~/.bashrc`, you can also use Git
   global config to set this if you have EDITOR set to something else
   `$ git config --global core.editor 'vim -f'`
-
-## Rakefile
-
-If you're looking for the old janus distribution controlled by a
-Rakefile then please head over to the [rakefile
-branch](https://github.com/carlhuda/janus/tree/rakefile) but please note
-that the rakefile branch will not be maintained.
+* Chef commands for easily finding your way
 
 ## License
 
