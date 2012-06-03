@@ -170,3 +170,6 @@
 [submodule "tools/command-t"]
 	path = tools/command-t
 	url = https://github.com/wincent/Command-T.git
+[submodule "langs/chef"]
+	path = langs/chef
+	url = https://github.com/t9md/vim-chef.git

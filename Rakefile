@@ -71,11 +71,11 @@ task :default => [:update]
 namespace :install do
   # Plugin installer
   %w(color lang tool).each do |type|
-    desc "Installs a plugin into #{type.pluralize}/"
+    desc "Installs a plugin into #{type}s/"
     task :"#{type}" do
       repo    = ARGV[0] # must end in .git
       plugin  = ARGV[1] || repo.gsub(/htt(p|ps)\:\/\/(.*)\/|git\:\/\/(.*)\/|.git/, '')
-      sh "git submodule add #{repo} #{type}/#{plugin}"
+      sh "git submodule add #{repo} #{type}s/#{plugin}"
     end
   end
 
