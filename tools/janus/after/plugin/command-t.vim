@@ -39,17 +39,17 @@ if filereadable(expand("config/environment.rb"))
   call janus#add_mapping('command-t', 'map', '<C-g>i',    ':CommandTFlush<cr>\|:CommandT test/integration<cr>')
   call janus#add_mapping('command-t', 'imap', '<C-g>i',    ':CommandTFlush<cr>\|:CommandT test/integration<cr>')
 
-  call janus#add_mapping('command-t', 'map', '<C-g>a',    ':CommandTFlush<cr>\|:CommandT app/assets<cr>'
-  call janus#add_mapping('command-t', 'imap', '<C-g>a',    ':CommandTFlush<cr>\|:CommandT app/assets<cr>'
+  call janus#add_mapping('command-t', 'map', '<C-g>a',    ':CommandTFlush<cr>\|:CommandT app/assets<cr>')
+  call janus#add_mapping('command-t', 'imap', '<C-g>a',    ':CommandTFlush<cr>\|:CommandT app/assets<cr>')
 
-  call janus#add_mapping('command-t', 'map', '<C-g>s',    ':CommandTFlush<cr>\|:CommandT app/assets/stylesheets<cr>' 
-  call janus#add_mapping('command-t', 'imap', '<C-g>s',    ':CommandTFlush<cr>\|:CommandT app/assets/stylesheets<cr>' 
+  call janus#add_mapping('command-t', 'map', '<C-g>s',    ':CommandTFlush<cr>\|:CommandT app/assets/stylesheets<cr>')
+  call janus#add_mapping('command-t', 'imap', '<C-g>s',    ':CommandTFlush<cr>\|:CommandT app/assets/stylesheets<cr>')
 
-  call janus#add_mapping('command-t', 'map', '<C-g>j',    ':CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>'
-  call janus#add_mapping('command-t', 'imap', '<C-g>j',    ':CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>'
+  call janus#add_mapping('command-t', 'map', '<C-g>j',    ':CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>')
+  call janus#add_mapping('command-t', 'imap', '<C-g>j',    ':CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>')
 
-  call janus#add_mapping('command-t', 'map', '<C-g>p',    ':CommandTFlush<cr>\|:CommandT public<cr>'
-  call janus#add_mapping('command-t', 'imap', '<C-g>p',    ':CommandTFlush<cr>\|:CommandT public<cr>'
+  call janus#add_mapping('command-t', 'map', '<C-g>p',    ':CommandTFlush<cr>\|:CommandT public<cr>')
+  call janus#add_mapping('command-t', 'imap', '<C-g>p',    ':CommandTFlush<cr>\|:CommandT public<cr>')
 endif
 
 " Bind Cmd+T in MacVim
