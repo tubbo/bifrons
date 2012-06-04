@@ -12,3 +12,6 @@ colorscheme solarized
 set background=light
 set guifont=Monaco:\h14
 call togglebg#map("<tab>")
+
+" Remove the Toolbar guioption by default
+set go-=T
