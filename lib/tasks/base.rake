@@ -15,15 +15,23 @@ task :folders do
   end
 end
 
+desc "Remove any untracked files from the folder"
+task :clean do
+  puts "Cleaning the janus folder"
+  `git clean -xdf -- janus &> /dev/null`
+  `git ls-files --exclude-standard --others -- janus`.split("\n").each do |untracked|
+    FileUtils.rm_rf File.expand_path(untracked.chomp, File.dirname(__FILE__))
+  end
+end
+
+
 desc "Update to the latest HEAD from git"
 task :update do
   Rake::Task[:clean].invoke
 
-  ['origin', `git config github.user`.strip].each do |remote|
-    puts "Pulling latest changes"
-    `git pull #{remote} master > /dev/null`
-    Rake::Task[:clean].invoke
-  end
+  puts "Pulling latest changes"
+  `git pull origin master > /dev/null`
+  Rake::Task[:clean].invoke
 
   puts "Synchronising submodule urls"
   `git submodule sync > /dev/null`
