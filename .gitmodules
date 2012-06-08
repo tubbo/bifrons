@@ -173,3 +173,6 @@
 [submodule "langs/chef"]
 	path = langs/chef
 	url = https://github.com/t9md/vim-chef.git
+[submodule "tools/powerline"]
+	path = tools/powerline
+	url = https://github.com/Lokaltog/vim-powerline.git

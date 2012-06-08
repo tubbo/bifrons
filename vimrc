@@ -28,8 +28,14 @@ set shell=zsh
 
 " Search highlighting, only done by request and easy to get rid of.
 set nohlsearch
-nnoremap <C-h> :set hlsearch!<cr>
+nnoremap <C-L> :set hlsearch!<cr>
 nnoremap <C-l> :nohl<cr>
+
+" CTags, hit Ctrl+H to browse them, Ctrl+H,N to iterate through findings, and Ctrl+Shift+H to go
+" directly to the first tag found
+vmap <C-h> <C-]>
+nnoremap <C-h>n :tnext<cr>
+nnoremap <C-h>s :tselect<cr>
 
 " Soft word wrap, by default using 2 spaces to conform with eLocal.
 set wrap
@@ -41,6 +47,7 @@ set list listchars=tab:\ \ ,trail:·
 set tw=100
 set ai    " Auto indent
 set si    " Smart indent
+
 
 " MacVim shift+arrow-keys behavior (required in .vimrc)
 let macvim_hig_shift_movement = 1
