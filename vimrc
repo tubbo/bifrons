@@ -124,7 +124,7 @@ endfunction
 " automatically reload vimrc when it's saved
 "au BufWritePost .vimrc so ~/.vimrc
 
-" strip whitespace
+" Strip whitespace in Python
 autocmd BufWritePre *.py :%s/\s\+$//e
 
 " Include user's local vim config
@@ -132,7 +132,7 @@ if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
 
-" No sound on errors
+" That bell is ANNOYING.
 set vb
 
 " Turn backups off since we store everything in Git
