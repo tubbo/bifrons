@@ -48,12 +48,18 @@ set tw=100
 set ai    " Auto indent
 set si    " Smart indent
 
+" Reload saved files automatically after they were changed outside of
+" Vim
+set autoread
 
 " MacVim shift+arrow-keys behavior (required in .vimrc)
 let macvim_hig_shift_movement = 1
 
 " Show (partial) command in the status line
 set showcmd
+
+" Use the system clipboard
+set clipboard=unnamed
 
 " Autocommands
 augroup vimrcEx
@@ -89,6 +95,9 @@ augroup vimrcEx
 
   " Uncomment this to turn off Markdown syntax highlighting
   "autocmd! FileType mkd setlocal syn=off
+
+  " Open the README file in a project dir (if there is one)
+  "autocmd AuNERDTreeCmd VimEnter * call OpenReadme()
 augroup END
 
 
@@ -105,8 +114,15 @@ endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
+" Opens the README.md file
+function! OpenReadme()
+  if filereadable('README.md')
+    edit README.md
+  endif
+endfunction
+
 " automatically reload vimrc when it's saved
-au BufWritePost .vimrc so ~/.vimrc
+"au BufWritePost .vimrc so ~/.vimrc
 
 " strip whitespace
 autocmd BufWritePre *.py :%s/\s\+$//e
@@ -117,8 +133,7 @@ if filereadable(expand("~/.vimrc.local"))
 endif
 
 " No sound on errors
-set noerrorbells
-set novisualbell
+set vb
 
 " Turn backups off since we store everything in Git
 set nobackup

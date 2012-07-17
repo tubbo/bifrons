@@ -5,7 +5,7 @@ if janus#is_plugin_enabled("nerdtree")
   call janus#add_mapping('nerdtree', 'map', '<leader>n', ':NERDTreeToggle<CR>')
 
   augroup AuNERDTreeCmd
-  autocmd AuNERDTreeCmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
+  "autocmd AuNERDTreeCmd VimEnter * call s:CdIfDirectory(expand("<amatch>"))
   autocmd AuNERDTreeCmd FocusGained * call s:UpdateNERDTree()
 
   " If the parameter is a directory, cd into it

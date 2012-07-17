@@ -25,7 +25,7 @@ else
   map <C-f> <S-Down>
 endif
 
-" Open all files git thinks have changed.
+" Gary Bernhardt's function
 function! OpenChangedFiles()
   only " Close all windows, unless they're modified
   let status = system('git status -s | grep "^ \?\(M\|A\)" | cut -d " " -f 3')
@@ -36,6 +36,15 @@ function! OpenChangedFiles()
   endfor
 endfunction
 
-command! OpenChangedFiles :call OpenChangedFiles()
-map <C-d> :OpenChangedFiles <cr>a
+" My function
+function! OpenUnstagedFiles()
+  let status = system("git status --porcelain -u | awk '{ print $2 }'")
+  let filenames = split(status, "\n")
+  exec "edit " .filenames[0]
+  for filename in filenames[1:]
+    exec "sp " . filename
+  endfor
+endfunction
 
+command! OpenUnstagedFiles :call OpenUnstagedFiles()
+map <C-d> :OpenUnstagedFiles <cr>a

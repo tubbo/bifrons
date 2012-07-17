@@ -55,5 +55,8 @@ endif
 " Bind Cmd+T in MacVim
 if has("gui_macvim") && has("gui_running")
   call janus#add_mapping('command-t', 'map', '<C-t>',   ':CommandT<CR>')
+  call janus#add_mapping('command-t', 'map', '<D-t>',   ':tabnew\|:CommandT<CR>')
+
   call janus#add_mapping('command-t', 'imap', '<C-t>',  '<ESC>:CommandT<CR>')
+  call janus#add_mapping('command-t', 'imap', '<D-t>',  '<ESC>:tabnew\|:CommandT<CR>')
 endif
