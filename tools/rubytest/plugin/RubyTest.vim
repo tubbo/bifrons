@@ -18,7 +18,7 @@ function! AlternateForCurrentFile()
   let new_file = current_file
   let in_test = match(current_file, '^test/') != -1
   let going_to_test = !in_test
-  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1
+  let in_app = match(current_file, '\<controllers\>') != -1 || match(current_file, '\<models\>') != -1 || match(current_file, '\<views\>') != -1 || match(current_file, '\<decorators\>') != -1 || match(current_file, '\<support\>') != -1 || match(current_file, '\<observers\>') != -1
   if going_to_test
     if in_app
       let new_file = substitute(new_file, '^app/', '', '')
