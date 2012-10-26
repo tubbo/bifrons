@@ -24,7 +24,6 @@ task :clean do
   end
 end
 
-
 desc "Update to the latest HEAD from git"
 task :update do
   Rake::Task[:clean].invoke
@@ -38,6 +37,9 @@ task :update do
 
   puts "Updating the submodules"
   `git submodule update --init > /dev/null`
+
+  puts "Resetting all submodules to the latest commit"
+  Rake::Task['dev:update_submodules'].invoke
 end
 
 desc "Get the Vim folder ready for Janus."

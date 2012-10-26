@@ -1,8 +1,8 @@
 namespace :dev do
   desc "Pull in changes from each submodule"
   task :update_submodules do
-    sh "git submodule foreach git pull origin master"
-    sh "git submodule foreach git add ."
+    sh "git submodule foreach 'git reset --hard HEAD >> /dev/null && git pull origin master >> /dev/null && git clean -f >> /dev/null' >> /dev/null"
+    puts "Pulled in changes from each submodule"
   end
 
   # Taken from RefineryCMS
