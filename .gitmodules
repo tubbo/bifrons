@@ -176,3 +176,6 @@
 [submodule "tools/powerline"]
 	path = tools/powerline
 	url = https://github.com/Lokaltog/vim-powerline.git
+[submodule "langs/go"]
+	path = langs/go
+	url = git://github.com/jnwhiteh/vim-golang.git

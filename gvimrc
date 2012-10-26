@@ -24,4 +24,7 @@ if has("gui_macvim")
   " iTerm split window legacy bindings
   map <D-d> :vsplit<cr>
   map <D-D> :split<cr>
+
+  " Open a new tab with a blank buffer
+  map <D-n> :tabnew<cr>
 endif

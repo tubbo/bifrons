@@ -58,5 +58,6 @@ if has("gui_macvim") && has("gui_running")
   call janus#add_mapping('command-t', 'map', '<D-t>',   ':tabnew\|:CommandT<CR>')
 
   call janus#add_mapping('command-t', 'imap', '<C-t>',  '<ESC>:CommandT<CR>')
-  call janus#add_mapping('command-t', 'imap', '<D-t>',  '<ESC>:tabnew\|:CommandT<CR>')
+  call janus#add_mapping('command-t', 'map', '<D-t>',   ':tabnew<cr>:CommandT<CR>')
+  call janus#add_mapping('command-t', 'imap', '<D-t>',  '<ESC>:tabnew<cr>:CommandT<CR>')
 endif

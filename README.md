@@ -35,7 +35,6 @@ all related external dependencies and the bundle:
 $ rake install:dependencies
 ```
 
-
 ## Upgrading
 
 To update to the latest version of the distribution, just run `rake`
@@ -48,7 +47,7 @@ Want to personalize it? Great! Fork the project and pull request in your awesome
 ## Base Customizations
 
 Bifrons ships with a number of basic customizations for Vim. They are
-practicall the same as Janus' customizations:
+practically the same as Janus' customizations:
 
 * Line numbers
 * Ruler (line and column numbers)
@@ -98,6 +97,16 @@ exist.)
   leftwards
 * `<C-W>!` invokes kwbd plugin; it closes all open buffers in the open
   windows but keeps the windows open
+* `<C-t>` invokes Command-T from inside the current tab
+* `<D-t>` spawns a new tab, then invokes Command-T inside that tab.
+  Thanks ST2!
+* `<C-j>` jumps to the CTag definition for the current file. 
+
+The following commands pertain only to Rails projects:
+
+* `<C-g>m` invokes Command-T only for the files in app/models
+* `<C-g>v` invokes Command-T only for the files in app/views
+* `<C-g>c` invokes Command-T only for the files in app/controllers
 
 ### [Ack.vim](http://github.com/mileszs/ack.vim)
 
@@ -132,7 +141,9 @@ filetype. View `:help NERDCommenter` for all the details.
 
 NERDTree is a file explorer plugin that provides "project drawer"
 functionality to your vim projects.  You can learn more about it with
-:help NERDTree.
+:help NERDTree. This is another plugin I don't personally use, in favor
+of Alloy's fork of MacVim, which adds a project drawer similiar to [some
+other graphical editors](http://github.com/textmate/textmate)
 
 **Customizations**: Janus adds a number of customizations to the core
 NERDTree:
@@ -160,7 +171,12 @@ execute their script to find them.
 
 Tagbar is a vim plugin for browsing the tags of source code files.
 
-**Customizations**: Janus binds `<Leader>rt` to toggle Tagbar.
+**Customizations**: Janus binds `<Leader>rt` to toggle Tagbar, and
+Bifrons rebinds this to `<C-h>` for quick home-row access to the CTags.
+An example Rakefile to generate CTags from every gem in the bundle (and
+for your own project) is provided in **lib/tasks/tags.rake**. Just copy
+the task to your **~/.rake** dir and invoke it with `rake -g tags` to
+use it in any application.
 
 ### [EasyMotion](https://github.com/Lokaltog/vim-easymotion)
 

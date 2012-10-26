@@ -2,6 +2,8 @@
 "" Janus setup
 ""
 
+" %s/:\([a-z0-9_]\+\)\s*=>/\1: /g <<< Ruby 1.8->1.9 hashes
+
 " Define paths. We always use the .vim dir.
 let g:janus_path = expand("~/.vim")
 let g:janus_vim_path = expand("~/.vim")
@@ -86,6 +88,9 @@ augroup vimrcEx
   " Alternative Sass extensions
   autocmd! BufRead,BufNewFile *.sass setfiletype sass
 
+  " Parse Procfiles as YAML
+  autocmd! BufRead,BufNewFile Procfile setfiletype yaml
+
   " Alternative Markdown extensions
   autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt textwidth=120;
   autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt textwidth=120;
@@ -158,3 +163,4 @@ set grepprg=/bin/grep\ -nH
 
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
+
