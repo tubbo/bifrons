@@ -179,3 +179,6 @@
 [submodule "langs/go"]
 	path = langs/go
 	url = git://github.com/jnwhiteh/vim-golang.git
+[submodule "langs/less"]
+	path = langs/less
+	url = git://github.com/groenewege/vim-less.git

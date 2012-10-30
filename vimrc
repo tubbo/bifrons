@@ -88,6 +88,9 @@ augroup vimrcEx
   " Alternative Sass extensions
   autocmd! BufRead,BufNewFile *.sass setfiletype sass
 
+  " LESS 'n shit
+  au BufNewFile,BufRead *.less set filetype=less
+
   " Parse Procfiles as YAML
   autocmd! BufRead,BufNewFile Procfile setfiletype yaml
 
