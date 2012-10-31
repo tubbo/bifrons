@@ -4,8 +4,8 @@
 
 " Solarized is always the best color scheme
 colorscheme solarized
-set background=light " hit tab to toggle
-set guifont=Monaco:\h14
+set background=light
+set guifont=Menlo:\h15
 call togglebg#map("<tab>")
 
 " Map Cmd+N to New Tab
