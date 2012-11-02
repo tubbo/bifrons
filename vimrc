@@ -12,6 +12,9 @@ let g:janus_custom_path = expand("~/.janus")
 " Load Janus core
 exe 'source ' . g:janus_vim_path . '/core/before/plugin/janus.vim'
 
+" Ctrl P
+let g:ctrlp_map = '<c-t>'
+let g:ctrlp_cmd = 'CtrlP'
 
 " Load Pathogen groups. Processed in reverse order.
 call janus#add_group("tools")
@@ -167,3 +170,5 @@ set grepprg=/bin/grep\ -nH
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
+" Turn off italics everywhere
+let g:solarized_italic=0

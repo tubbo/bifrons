@@ -1,16 +1,12 @@
-"" tubbo's gvimrc
-""
-"" configuration specific to MacVim
-
-" Solarized is always the best color scheme
+" Use Solarized, with the 'light' variant on by default.
 colorscheme solarized
 set background=light
-set guifont=Menlo:\h15
-call togglebg#map("<tab>")
 
-" Map Cmd+N to New Tab
-"macmenu &File.New\ Tab key=<D-n>
-"macmenu &File.New\ Window key=<D-S-n>
+" Use Menlo font, because Monaco is too wide-spaced now.
+set guifont=Menlo:\h15
+
+" Toggle dark and light when 'tab' is struck in command mode
+call togglebg#map("<tab>")
 
 if has("gui_macvim")
   set guioptions-=T
@@ -28,3 +24,13 @@ if has("gui_macvim")
   " Open a new tab with a blank buffer
   map <D-n> :tabnew<cr>
 endif
+
+" Turn off italics in comments (and everywhere else).
+let g:solarized_italic=0
+
+" Disable the toolbar in MacVim.
+set go-=T
+
+" Map Cmd+N to 'New Tab', so we can use Cmd+T to open 'New Tab'
+macmenu &File.New\ Tab key=<D-n>
+macmenu &File.New\ Window key=<D-S-n>
